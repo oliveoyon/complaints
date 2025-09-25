@@ -1,0 +1,39 @@
+Complaint Management System – Tables & Workflow
+
+Core Tables:
+
+users – existing table, stores all students, teachers, HODs, VP, principal, admin, etc. Roles managed via Spatie.
+
+complaints – main table storing each complaint, with description, category, severity, status, assigned staff, department, anonymous flag, and timestamps.
+
+complaint_categories – configurable categories (Academic, Facility, Behavioral, etc.).
+
+severity_levels – configurable severity (Low, Medium, High, Urgent).
+
+departments – stores university departments for routing/assignment.
+
+complaint_status_histories – tracks every status change with timestamps and remarks.
+
+complaint_feedbacks – stores student/guardian feedback and rating after resolution.
+
+complaint_attachments – stores multiple files linked to complaints with uploader info.
+
+complaint_slas – tracks deadlines for complaints and auto-escalation info.
+
+Workflow:
+
+Student/guardian raises a complaint → stored in complaints.
+
+Complaint is categorized (category_id) and assigned severity (severity_id).
+
+Complaint may be assigned to a department (department_id) and staff (assigned_to).
+
+Every status change (e.g., Received → Under Consideration → Resolved) is recorded in complaint_status_histories.
+
+Students can provide feedback after resolution → complaint_feedbacks.
+
+Multiple files attached are stored in complaint_attachments.
+
+SLA deadlines are tracked in complaint_slas for auto-escalation if complaints are not resolved on time.
+
+This system uses one users table with roles for permissions; students have a different layout and route prefix, but all operations are controlled via Spatie permissions.
